@@ -3,10 +3,15 @@
 
 int main() { 
 
-    char* input = " 1234 ";
+    char* input = "1234 + 1234 -  - 1234";
     int position = 0;
 
     Token token = nextToken(input, &position);
 
-    printf("Token: %s\n", token.lexeme);
+
+
+    while (token.type != T_ERR) {
+        printf("Token: %s\n", token.lexeme);
+        token = nextToken(input, &position);
+    }
 }
