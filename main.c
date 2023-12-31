@@ -3,7 +3,7 @@
 
 int main() { 
 
-    char* input = "1234 + 1234 -  - 1234";
+    char* input = " ( ) ( ( 123 + 456 ) / 789 -         123 )";
     int position = 0;
 
     Token token = nextToken(input, &position);
