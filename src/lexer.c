@@ -1,36 +1,37 @@
 #include "../include/lexer.h"
 
-Token tokenizeString(char* input, int start, int *end) {
-    Token token;
-    token.lexeme = (char*) malloc(*end - start + 1);
-    strncpy(token.lexeme, input + start, *end - start);
+
+Token* tokenizeString(char* input, int start, int *end) {
+    Token* token = (Token*)malloc(sizeof(Token));
+    token->lexeme = (char*)malloc(*end - start + 1);
+    strncpy(token->lexeme, input + start, *end - start);
+    token->lexeme[*end - start] = '\0'; // Null-terminate the string
     return token;
 }
 
-Token atom(char* input, int start, int *end, TokenType token_type) {
+Token* atom(char* input, int start, int *end, TokenType token_type) {
     (*end)++;
-        
-    Token token = tokenizeString(input, start, end);
-    token.type = token_type;
+    
+    Token* token = tokenizeString(input, start, end);
+    token->type = token_type;
+    
     return token;
 }
 
-Token numeric(char* input, int start, int *end){
-
+Token* numeric(char* input, int start, int *end) {
     bool period_used = false;
 
     while (isdigit(input[*end]) || (input[*end] == '.' && !period_used)) {
-        
-        if (input[*end] == '.') { period_used = true; }
+        if (input[*end] == '.') {
+            period_used = true;
+        }
         (*end)++;
-
     }
 
-    Token token = tokenizeString(input, start, end);
-    if (period_used) { token.type = T_FLT; }
-    else { token.type = T_INT; }
-    return token;
+    Token* token = tokenizeString(input, start, end);
+    token->type = period_used ? T_FLT : T_INT;
     
+    return token;
 }
 
 TokenType GetOperatorType(char opr) {
@@ -52,7 +53,7 @@ TokenType GetGroupingType(char grp) {
 }
 
 
-Token nextToken(char* input, int *position) {
+Token* nextToken(char* input, int *position) {
 
     char curr = input[*position];
 
@@ -68,22 +69,22 @@ Token nextToken(char* input, int *position) {
 
     //Handling operator token
     if (GetOperatorType(curr) != T_ERR) {
-        Token t = atom(input, start, position, GetOperatorType(curr));
+        Token* t = atom(input, start, position, GetOperatorType(curr));
         curr = input[*position];
         return t;
     }
 
     //Handling grouping token
     if (GetGroupingType(curr) != T_ERR) {
-        Token t = atom(input, start, position, GetGroupingType(curr));
+        Token* t = atom(input, start, position, GetGroupingType(curr));
         curr = input[*position];
         return t;
     }
 
     
     //Error token
-    Token token;
-    token.lexeme = "Error constructing token";
-    token.type = T_ERR;
+    Token* token = (Token*)malloc(sizeof(Token));
+    token->lexeme = "Error constructing token";
+    token->type = T_ERR;
     return token;
 }

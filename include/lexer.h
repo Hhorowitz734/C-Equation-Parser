@@ -33,14 +33,14 @@ typedef struct {
     char* lexeme;
 } Token;
 
-Token tokenizeString(char* input, int start, int *end);
+Token* tokenizeString(char* input, int start, int *end);
 
-Token atom(char* input, int start, int *end, TokenType token_type);
+Token* atom(char* input, int start, int *end, TokenType token_type); //To optimize this, pass a pointer instead
 
-Token numeric(char* input, int start, int *end);
+Token* numeric(char* input, int start, int *end);
 
 TokenType GetGroupingType(char grp);
 
-Token nextToken(char* input, int *position);
+Token* nextToken(char* input, int *position);
 
 #endif // LEXER_H
