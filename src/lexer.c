@@ -1,37 +1,4 @@
-#ifndef LEXER_H
-#define LEXER_H
-
-#include <ctype.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdbool.h>
-
-
-
-typedef enum {
-
-    T_INT, //integer
-    T_FLT, //float
-    T_STR, //string
-    
-    T_PLS, //plus
-    T_MNS, //minus
-    T_MLT, //multiplication
-    T_DVD, //division
-
-    T_POP, // ( parenthesis open
-    T_PCL, // ) parenthesis closed
-
-    T_ERR //error
-
-
-} TokenType;
-
-typedef struct {
-    TokenType type;
-    char* lexeme;
-} Token;
+#include "../include/lexer.h"
 
 Token tokenizeString(char* input, int start, int *end) {
     Token token;
@@ -120,5 +87,3 @@ Token nextToken(char* input, int *position) {
     token.type = T_ERR;
     return token;
 }
-
-#endif // LEXER_H
