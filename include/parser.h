@@ -12,17 +12,26 @@
     Number → Int | Float
 */
 
-typedef struct {
+typedef struct TokenNode {
 
     // Token and its type
     Token* token;
     TokenType tokenType;
 
     // Left and right children of node
-    Token* left;
-    Token* right;
+    struct TokenNode* left;
+    struct TokenNode* right;
 
 } TokenNode;
+
+// RECURSIVE DESCENT FUNCTIONS
+
+TokenNode* parseExpression(char* input, int* position);
+
+TokenNode* parseTerm(char* input, int* position);
+
+TokenNode* parseFactor(char* input, int* position);
+
 
 /**
  * @brief Creates a parsing tree for an input string
@@ -32,6 +41,9 @@ typedef struct {
  * @returns The root TokenNode* of the parsing tree
 */
 TokenNode* getRoot(char* input);
+
+// UTILITY FUNCTIONS
+
 
 /**
  * @brief Consumes the current token and advances the position in the input stream.

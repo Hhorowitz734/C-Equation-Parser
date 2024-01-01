@@ -43,6 +43,23 @@ void test_is_expected(void) {
     CU_ASSERT_EQUAL(isExpected(expected, T_INT), 1);
 }
 
+void base_expression_test(void) {
+
+    char* input = "(3 * 4) + 5";
+
+    TokenNode* root = getRoot(input);
+
+    CU_ASSERT_STRING_EQUAL(root->token->lexeme, "+");
+
+    // Check left subtree
+    CU_ASSERT_STRING_EQUAL(root->left->token->lexeme, "*");
+    CU_ASSERT_STRING_EQUAL(root->left->left->token->lexeme, "3");
+    CU_ASSERT_STRING_EQUAL(root->left->left->token->lexeme, "4");
+
+    // Check right subtree
+    CU_ASSERT_STRING_EQUAL(root->right->token->lexeme, "5");
+}
+
 int main() {
     CU_initialize_registry();
 
@@ -50,6 +67,7 @@ int main() {
     CU_add_test(suite, "Testing peek", test_peek);
     CU_add_test(suite, "Testing consume", test_consume);
     CU_add_test(suite, "Testing isExpected", test_is_expected);
+    CU_add_test(suite, "Test parsing of a basic expression", base_expression_test);
 
     CU_basic_set_mode(CU_BRM_VERBOSE);
     CU_basic_run_tests();
