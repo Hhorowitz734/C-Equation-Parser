@@ -26,10 +26,49 @@ typedef struct TokenNode {
 
 // RECURSIVE DESCENT FUNCTIONS
 
+/**
+ * @brief Parses an expression from the input string.
+ * 
+ * This function is responsible for parsing expressions which involve
+ * addition and subtraction operations. It constructs and returns a parse
+ * tree representing the expression. The parsing is done recursively, and
+ * it involves calling parseTerm for handling the terms within the expression.
+ * 
+ * @param input The input string containing the expression to be parsed.
+ * @param position Pointer to the current position in the input string.
+ * 
+ * @returns A pointer to the root node of the parse tree representing the parsed expression.
+ */
 TokenNode* parseExpression(char* input, int* position);
 
+/**
+ * @brief Parses a term from the input string.
+ * 
+ * This function handles the parsing of terms, which are components of expressions
+ * typically involving multiplication and division operations. It builds and returns
+ * a parse tree representing the term. The function may recursively call parseFactor
+ * to handle individual factors within the term.
+ * 
+ * @param input The input string containing the term to be parsed.
+ * @param position Pointer to the current position in the input string.
+ * 
+ * @returns A pointer to the root node of the parse tree representing the parsed term.
+ */
 TokenNode* parseTerm(char* input, int* position);
 
+/**
+ * @brief Parses a factor from the input string.
+ * 
+ * A factor is the most basic unit in an expression, typically a number or
+ * a parenthesized sub-expression. This function parses a single factor and
+ * returns a parse tree node representing it. In case of a parenthesized
+ * expression, it recursively calls parseExpression.
+ * 
+ * @param input The input string containing the factor to be parsed.
+ * @param position Pointer to the current position in the input string.
+ * 
+ * @returns A pointer to the node representing the parsed factor.
+ */
 TokenNode* parseFactor(char* input, int* position);
 
 

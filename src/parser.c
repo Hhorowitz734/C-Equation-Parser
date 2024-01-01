@@ -47,8 +47,6 @@ int isExpected(Token* token, TokenType expected_type) { return token->type == ex
 TokenNode* parseExpression(char* input, int* position) {
 
     TokenNode* leftTerm = parseTerm(input, position);
-    //printf("%s\n", leftTerm->token->lexeme);
-    // ^^ Should be parseTerm
 
     while (true) {
 
@@ -60,8 +58,6 @@ TokenNode* parseExpression(char* input, int* position) {
             Token* opToken = consume(input, position);
 
             TokenNode* rightTerm = parseTerm(input, position);
-            //To test, just replace with parseFactor for now
-            // ^^^^ should be parseTerm
 
             TokenNode* expressionNode = createTokenNode(
                 opToken,
