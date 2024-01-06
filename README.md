@@ -13,15 +13,6 @@ This project is designed to efficiently process mathematical equations by lexing
 
 ---
 
-## Installation
-Instructions for setting up and installing your project:
-
-1. Prerequisite: Any prerequisites or dependencies.
-2. Step 1: First installation step.
-3. Step 2: Further steps...
-
----
-
 ## Installation Instructions
 
 This guide will walk you through the process of setting up and installing the EquationParser project on your system.
@@ -45,5 +36,51 @@ First, clone the EquationParser repository from its source. This step assumes yo
 git clone https://github.com/Hhorowitz734/C-Equation-Parser
 cd EquationParser
 
+
+### Step 2: Install Raylib and CUnit
+
+If you haven't already installed Raylib and CUnit, you can do so using Homebrew on macOS:
+
 ```bash
-# Example command
+brew install raylib
+brew install cunit
+```
+
+For other operating systems, please refer to the official documentation for Raylib and CUnit for installation instructions.
+
+### Step 3: Build the Project
+
+Once the prerequisites are installed, you can build the project using CMake:
+
+```bash
+mkdir build
+cd build
+cmake ..
+make
+```
+
+This will compile the main application along with the necessary libraries.
+
+### Step 4: Run Tests
+
+To ensure everything is set up correctly, run the included tests:
+
+```bash
+ctest
+```
+
+This command will execute all the tests defined in the CMake configuration, such as LexerTest, StackTest, QueueTest, and ParserTest.
+
+### Step 5: Running the Application
+
+After successfully building the project and passing the tests, you can run the EquationParser application:
+
+```bash
+./equationparser
+```
+
+This command will start the application. Follow any on-screen instructions to interact with the program.
+
+### Troubleshooting
+
+If you encounter any issues during installation or running the application, check the project's documentation for troubleshooting tips or contact the support team.
