@@ -35,7 +35,7 @@ First, clone the EquationParser repository from its source. This step assumes yo
 ```bash
 git clone https://github.com/Hhorowitz734/C-Equation-Parser
 cd EquationParser
-
+```
 
 ### Step 2: Install Raylib and CUnit
 
