@@ -5,7 +5,7 @@
 
 int main() { 
 
-    char* input = "(1 / 2) + (3 * 4)";
+    char* input = "(50 - 5) * ((5 + 3) - (4 * 4))";
     TokenNode* root = getRoot(input);
 
 
