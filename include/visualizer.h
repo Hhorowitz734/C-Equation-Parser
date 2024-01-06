@@ -61,5 +61,6 @@ void drawLineBetweenNodes(Coordinate* from, Coordinate* to, float radius);
 
 
 
-///  NEXT STEP -> implement horizontal offset by depth in the function definitions
-// Then make the changes to the functions in visualizer.c
+///  NEXT STEP -> Implement some sort of system to prevent
+// Larger equations from overlapping so that we can dynamically
+// Visualize anything

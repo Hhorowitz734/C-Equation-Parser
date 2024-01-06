@@ -3,17 +3,19 @@
 #include <math.h>
 
 Coordinate* getLeftCoord(Coordinate* coord, int depth) {
+
+    if (depth == 1) { depth = -3; }
     
     //MAGIC NUMBERS
     const float cos_4pi_3 = -.5;
     const float sin_4pi_3 = -.866;
 
-    float horizontalOffset = 75 * (5 - depth); // Dynamic offset
+    float horizontalOffset = 50 * (5 - depth); // Dynamic offset
 
     Coordinate* return_coord = (Coordinate*)malloc(sizeof(Coordinate));
     if (return_coord != NULL) {
-        return_coord->x = coord->x - horizontalOffset + (50 * 2 * cos_4pi_3); //x + 3rcostheta
-        return_coord->y = coord->y - (50 * 3 * sin_4pi_3); //y + 3rsintheta
+        return_coord->x = coord->x - horizontalOffset + (30 * 2 * cos_4pi_3); //x + 3rcostheta
+        return_coord->y = coord->y - (30 * 3 * sin_4pi_3); //y + 3rsintheta
     }
 
     return return_coord;
@@ -23,16 +25,18 @@ Coordinate* getLeftCoord(Coordinate* coord, int depth) {
 
 Coordinate* getRightCoord(Coordinate* coord, int depth) {
 
+    if (depth == 1) { depth = -3; }
+
     //MAGIC NUMBERS
     const float cos_5pi_3 = 0.5;
     const float sin_5pi_3 = -0.866;
 
-    float horizontalOffset = 75 * (5 - depth);
+    float horizontalOffset = 50 * (5 - depth);
 
     Coordinate* return_coord = (Coordinate*)malloc(sizeof(Coordinate));
     if (return_coord != NULL) {
-        return_coord->x = coord->x + horizontalOffset + (50 * 2 * cos_5pi_3); // x + 3rcos(5π/3)
-        return_coord->y = coord->y - (50 * 3 * sin_5pi_3); // y + 3rsin(5π/3)
+        return_coord->x = coord->x + horizontalOffset + (30 * 2 * cos_5pi_3); // x + 3rcos(5π/3)
+        return_coord->y = coord->y - (30 * 3 * sin_5pi_3); // y + 3rsin(5π/3)
     }
 
     return return_coord;
@@ -74,19 +78,19 @@ void drawNode(TokenNode* node, Coordinate* coord, int depth) {
     }
 
     // Draw the current node
-    DrawCircle(coord->x, coord->y, 50, WHITE);
-    DrawCircle(coord->x, coord->y, 48, BLACK);
+    DrawCircle(coord->x, coord->y, 30, WHITE);
+    DrawCircle(coord->x, coord->y, 28, BLACK);
     DrawText(node->token->lexeme, coord->x - 15, coord->y - 25, 30, GREEN);
 
     // Now draw lines to children
     if (leftCoord != NULL) {
-        drawLineBetweenNodes(coord, leftCoord, 50);
+        drawLineBetweenNodes(coord, leftCoord, 30);
         drawNode(node->left, leftCoord, depth + 1);
         free(leftCoord);
     }
 
     if (rightCoord != NULL) {
-        drawLineBetweenNodes(coord, rightCoord, 50);
+        drawLineBetweenNodes(coord, rightCoord, 30);
         drawNode(node->right, rightCoord, depth + 1);
         free(rightCoord);
     }
@@ -95,7 +99,7 @@ void drawNode(TokenNode* node, Coordinate* coord, int depth) {
 
 void showTree(TokenNode* root) {
 
-    const int screenWidth = 1900;
+    const int screenWidth = 1500;
     const int screenHeight = 1000;
 
     InitWindow(screenWidth, screenHeight, "Equation Tree");
