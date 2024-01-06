@@ -83,4 +83,4 @@ This command will start the application. Follow any on-screen instructions to in
 
 ### Troubleshooting
 
-If you encounter any issues during installation or running the application, check the project's documentation for troubleshooting tips or contact the support team.
+If you encounter any issues during installation or running the application, email me at hhorowitz734@gmail.com.
