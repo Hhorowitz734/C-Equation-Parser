@@ -73,7 +73,7 @@ This command will execute all the tests defined in the CMake configuration, such
 
 ### Step 5: Running the Application
 
-After successfully building the project and passing the tests, you can run the EquationParser application:
+After successfully building the project and passing the tests, you can run the EquationParser application after updating your equation in the main.c.
 
 ```bash
 ./equationparser
@@ -84,3 +84,6 @@ This command will start the application. Follow any on-screen instructions to in
 ### Troubleshooting
 
 If you encounter any issues during installation or running the application, email me at hhorowitz734@gmail.com.
+
+## Images
+![Tree Image](/images/tree.png "Tree Visualization")
